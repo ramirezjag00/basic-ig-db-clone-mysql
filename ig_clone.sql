@@ -1,3 +1,4 @@
+DROP DATABASE ig_clone;
 CREATE DATABASE ig_clone;
 USE ig_clone;
 
@@ -42,6 +43,16 @@ CREATE TABLE follows (
     FOREIGN KEY(followee_id) REFERENCES users(id),
     PRIMARY KEY(follower_id, followee_id)
 );
+
+CREATE TABLE unfollows (
+    follower_id INTEGER NOT NULL,
+    followee_id INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW(),
+    FOREIGN KEY(follower_id) REFERENCES users(id),
+    FOREIGN KEY(followee_id) REFERENCES users(id),
+    PRIMARY KEY(follower_id, followee_id)
+);
+
 
 CREATE TABLE tags (
   id INTEGER AUTO_INCREMENT PRIMARY KEY,
